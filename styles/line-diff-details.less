@@ -1,0 +1,24 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+@import "syntax-variables";
+
+atom-text-editor::shadow .line-diff-added {
+    background: @syntax-color-added !important
+}
+
+atom-text-editor::shadow .line-diff-modified {
+    background: @syntax-color-modified !important
+}
+
+atom-text-editor::shadow .line-diff-removed {
+    background: @syntax-color-removed !important
+}
+
+
+atom-text-editor::shadow .line-diff-marker {
+    background: rgba(255, 125, 251, 0.65) !important;
+    color: black
+}

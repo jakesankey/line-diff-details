@@ -1,0 +1,24 @@
+{
+  "name": "line-diff-details",
+  "main": "./lib/line-diff-details",
+  "version": "0.0.0",
+  "description": "Review/revert individual line changes.",
+  "keywords": [
+    "diff",
+    "line",
+    "revert",
+    "git"
+  ],
+  "scripts": {
+    "test": "apm test"
+  },
+  "activationCommands": {},
+  "repository": "https://github.com/jakesankey/line-diff-details",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=0.174.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-space-pen-views": "^2.0.3"
+  }
+}

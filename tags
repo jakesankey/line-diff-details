@@ -1,0 +1,139 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+# Keybindings require three things to be fully defined	keymaps/line-diff-details.cson	/^# Keybindings require three things to be fully defined: A selector that is$/;"	f
+# See https	menus/line-diff-details.cson	/^# See https:\/\/atom.io\/docs\/latest\/hacking-atom-package-word-count#menus for more details$/;"	f
+# https	keymaps/line-diff-details.cson	/^# https:\/\/atom.io\/docs\/latest\/behind-atom-keymaps-in-depth$/;"	f
+LineDiffDetails	lib/line-diff-details.coffee	/^class LineDiffDetails$/;"	c
+LineDiffDetailsView	lib/line-diff-details-view.coffee	/^class LineDiffDetailsView$/;"	c
+LineDiffService	lib/line-diff-service.coffee	/^class LineDiffService$/;"	c
+activate	lib/line-diff-details.coffee	/^    activate: ->$/;"	m
+activationCommands	package.json	/^  "activationCommands": {$/;"	f
+activeEditorText	lib/line-diff-service.coffee	/^        activeEditorText = atom.workspace.getActiveEditor().getBuffer().getText()$/;"	v
+activePath	lib/line-diff-service.coffee	/^        activePath = atom.workspace.getActiveEditor().getPath()$/;"	v
+allowed_in_comments	coffeelint.json	/^    "allowed_in_comments": false,$/;"	f
+allowed_in_empty_lines	coffeelint.json	/^    "allowed_in_empty_lines": false$/;"	f
+arrow_spacing	coffeelint.json	/^  "arrow_spacing": {$/;"	f
+atom	package.json	/^    "atom": ">=0.174.0 <2.0.0"$/;"	f
+atom-space-pen-views	package.json	/^    "atom-space-pen-views": "^2.0.3"$/;"	f
+atom-text-editor	menus/line-diff-details.cson	/^  'atom-text-editor': [$/;"	f
+atom-workspace	keymaps/line-diff-details.cson	/^'atom-workspace':$/;"	f
+calculateDiffDetails	lib/line-diff-service.coffee	/^    calculateDiffDetails: (lineNumber) ->$/;"	m
+camel_case_classes	coffeelint.json	/^  "camel_case_classes": {$/;"	f
+coffeescript_error	coffeelint.json	/^  "coffeescript_error": {$/;"	f
+colon_assignment_spacing	coffeelint.json	/^  "colon_assignment_spacing": {$/;"	f
+command	menus/line-diff-details.cson	/^          'command': 'line-diff-details:toggle'$/;"	f
+command	menus/line-diff-details.cson	/^      'command': 'line-diff-details:toggle'$/;"	f
+constructor	lib/line-diff-details-view.coffee	/^    constructor: ->$/;"	m
+content	lib/line-diff-service.coffee	/^                content = ""$/;"	v
+context-menu	menus/line-diff-details.cson	/^'context-menu':$/;"	f
+ctrl-alt-d	keymaps/line-diff-details.cson	/^    'ctrl-alt-d': 'line-diff-details:toggle'$/;"	f
+cyclomatic_complexity	coffeelint.json	/^  "cyclomatic_complexity": {$/;"	f
+deactivate	lib/line-diff-details.coffee	/^    deactivate: ->$/;"	m
+dependencies	package.json	/^  "dependencies": {$/;"	f
+description	package.json	/^  "description": "View the git diff for a line by clicking the line number. Optionally revert to original.",$/;"	f
+destroy	lib/line-diff-details-view.coffee	/^    destroy: ->$/;"	m
+duplicate_key	coffeelint.json	/^  "duplicate_key": {$/;"	f
+editor	spec/line-diff-service-spec.coffee	/^    editor = {$/;"	v
+editorView	lib/line-diff-service.coffee	/^        editorView = atom.views.getView(editor).shadowRoot$/;"	v
+empty_constructor_needs_parens	coffeelint.json	/^  "empty_constructor_needs_parens": {$/;"	f
+engines	package.json	/^  "engines": {$/;"	f
+fileRepo	lib/line-diff-service.coffee	/^        fileRepo = repo.getRepo(activePath)$/;"	v
+findDiffForLine	lib/line-diff-service.coffee	/^    findDiffForLine: (lineNumber) ->$/;"	m
+findFileDiffs	lib/line-diff-service.coffee	/^    findFileDiffs: ->$/;"	m
+getElement	lib/line-diff-details-view.coffee	/^    getElement: ->$/;"	m
+indentation	coffeelint.json	/^  "indentation": {$/;"	f
+index	lib/line-diff-service.coffee	/^        index = 0$/;"	v
+isAdding	lib/line-diff-service.coffee	/^                    isAdding: yes$/;"	f
+jquery	package.json	/^    "jquery": "^2.1.3",$/;"	f
+keywords	package.json	/^  "keywords": [$/;"	f
+label	menus/line-diff-details.cson	/^          'label': 'Toggle'$/;"	f
+label	menus/line-diff-details.cson	/^      'label': 'Toggle line-diff-details'$/;"	f
+label	menus/line-diff-details.cson	/^      'label': 'line-diff-details'$/;"	f
+label	menus/line-diff-details.cson	/^    'label': 'Packages'$/;"	f
+left	coffeelint.json	/^        "left": 0,$/;"	f
+level	coffeelint.json	/^    "level": "error"$/;"	f
+level	coffeelint.json	/^    "level": "error",$/;"	f
+level	coffeelint.json	/^    "level": "ignore"$/;"	f
+level	coffeelint.json	/^    "level": "ignore",$/;"	f
+level	coffeelint.json	/^    "level": "warn"$/;"	f
+level	coffeelint.json	/^    "level": "warn",$/;"	f
+license	package.json	/^  "license": "MIT",$/;"	f
+limitComments	coffeelint.json	/^    "limitComments": true$/;"	f
+lineStuff	lib/line-diff-service.coffee	/^        lineStuff = {}$/;"	v
+line_endings	coffeelint.json	/^  "line_endings": {$/;"	f
+lines	lib/line-diff-service.coffee	/^            lines = 0$/;"	v
+main	package.json	/^  "main": ".\/lib\/line-diff-details",$/;"	f
+max_line_length	coffeelint.json	/^  "max_line_length": {$/;"	f
+menu	menus/line-diff-details.cson	/^'menu': [$/;"	f
+missing_fat_arrows	coffeelint.json	/^  "missing_fat_arrows": {$/;"	f
+name	coffeelint.json	/^    "name": "arrow_spacing",$/;"	f
+name	coffeelint.json	/^    "name": "camel_case_classes",$/;"	f
+name	coffeelint.json	/^    "name": "colon_assignment_spacing",$/;"	f
+name	coffeelint.json	/^    "name": "cyclomatic_complexity",$/;"	f
+name	coffeelint.json	/^    "name": "duplicate_key",$/;"	f
+name	coffeelint.json	/^    "name": "empty_constructor_needs_parens",$/;"	f
+name	coffeelint.json	/^    "name": "indentation",$/;"	f
+name	coffeelint.json	/^    "name": "line_endings",$/;"	f
+name	coffeelint.json	/^    "name": "max_line_length",$/;"	f
+name	coffeelint.json	/^    "name": "missing_fat_arrows",$/;"	f
+name	coffeelint.json	/^    "name": "newlines_after_classes",$/;"	f
+name	coffeelint.json	/^    "name": "no_backticks",$/;"	f
+name	coffeelint.json	/^    "name": "no_empty_param_list",$/;"	f
+name	coffeelint.json	/^    "name": "no_implicit_braces",$/;"	f
+name	coffeelint.json	/^    "name": "no_implicit_parens",$/;"	f
+name	coffeelint.json	/^    "name": "no_plusplus",$/;"	f
+name	coffeelint.json	/^    "name": "no_stand_alone_at",$/;"	f
+name	coffeelint.json	/^    "name": "no_tabs",$/;"	f
+name	coffeelint.json	/^    "name": "no_throwing_strings",$/;"	f
+name	coffeelint.json	/^    "name": "no_trailing_semicolons",$/;"	f
+name	coffeelint.json	/^    "name": "no_trailing_whitespace",$/;"	f
+name	coffeelint.json	/^    "name": "no_unnecessary_fat_arrows",$/;"	f
+name	coffeelint.json	/^    "name": "non_empty_constructor_needs_parens",$/;"	f
+name	coffeelint.json	/^    "name": "space_operators",$/;"	f
+name	package.json	/^  "name": "line-diff-details",$/;"	f
+newlines_after_classes	coffeelint.json	/^  "newlines_after_classes": {$/;"	f
+no_backticks	coffeelint.json	/^  "no_backticks": {$/;"	f
+no_empty_param_list	coffeelint.json	/^  "no_empty_param_list": {$/;"	f
+no_implicit_braces	coffeelint.json	/^  "no_implicit_braces": {$/;"	f
+no_implicit_parens	coffeelint.json	/^  "no_implicit_parens": {$/;"	f
+no_plusplus	coffeelint.json	/^  "no_plusplus": {$/;"	f
+no_stand_alone_at	coffeelint.json	/^  "no_stand_alone_at": {$/;"	f
+no_tabs	coffeelint.json	/^  "no_tabs": {$/;"	f
+no_throwing_strings	coffeelint.json	/^  "no_throwing_strings": {$/;"	f
+no_trailing_semicolons	coffeelint.json	/^  "no_trailing_semicolons": {$/;"	f
+no_trailing_whitespace	coffeelint.json	/^  "no_trailing_whitespace": {$/;"	f
+no_unnecessary_fat_arrows	coffeelint.json	/^  "no_unnecessary_fat_arrows": {$/;"	f
+non_empty_constructor_needs_parens	coffeelint.json	/^  "non_empty_constructor_needs_parens": {$/;"	f
+onDidChangePath	spec/line-diff-service-spec.coffee	/^        onDidChangePath: ->$/;"	m
+onDidChangeScrollTop	spec/line-diff-service-spec.coffee	/^        onDidChangeScrollTop: ->$/;"	m
+onDidStopChanging	spec/line-diff-service-spec.coffee	/^        onDidStopChanging: ->$/;"	m
+orginalStart	lib/line-diff-service.coffee	/^                    orginalStart: diff.oldStart$/;"	f
+originalContent	lib/line-diff-service.coffee	/^                    originalContent: ""$/;"	f
+registerEditor	lib/line-diff-service.coffee	/^    registerEditor: (editor) ->$/;"	m
+repo	lib/line-diff-service.coffee	/^        repo = atom.project.getRepo()$/;"	v
+repository	package.json	/^  "repository": "https:\/\/github.com\/jakesankey\/line-diff-details",$/;"	f
+result	spec/line-diff-service-spec.coffee	/^        result = service.calculateDiffDetails(13)$/;"	v
+right	coffeelint.json	/^        "right": 1$/;"	f
+scripts	package.json	/^  "scripts": {$/;"	f
+serialize	lib/line-diff-details-view.coffee	/^    serialize: ->$/;"	m
+serialize	lib/line-diff-details.coffee	/^    serialize: ->$/;"	m
+service.findFileDiffs	spec/line-diff-service-spec.coffee	/^        service.findFileDiffs = ->$/;"	f
+space_operators	coffeelint.json	/^  "space_operators": {$/;"	f
+spacing	coffeelint.json	/^    "spacing": {$/;"	f
+strict	coffeelint.json	/^    "strict": true$/;"	f
+submenu	menus/line-diff-details.cson	/^      'submenu': [$/;"	f
+submenu	menus/line-diff-details.cson	/^    'submenu': [$/;"	f
+test	package.json	/^    "test": "apm test"$/;"	f
+thisDiff	lib/line-diff-service.coffee	/^                    thisDiff = fileDiffs[item]$/;"	v
+toggle	lib/line-diff-details.coffee	/^    toggle: ->$/;"	m
+update	lib/line-diff-service.coffee	/^    update: (editor) ->$/;"	m
+value	coffeelint.json	/^    "value": "unix"$/;"	f
+value	coffeelint.json	/^    "value": 10,$/;"	f
+value	coffeelint.json	/^    "value": 120,$/;"	f
+value	coffeelint.json	/^    "value": 3,$/;"	f
+value	coffeelint.json	/^    "value": 4,$/;"	f
+version	package.json	/^  "version": "0.0.0",$/;"	f
