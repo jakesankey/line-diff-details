@@ -1,6 +1,6 @@
-LineDiffWorker = require '../lib/line-diff-worker'
+LineDiffWorker = require "../lib/line-diff-worker"
 
-describe "Line Diff Worker Suite", ->
+describe "LineDiffWorker Suite", ->
     service = null
 
     beforeEach ->
