@@ -12,8 +12,7 @@ class LineDiffWorker {
     }
 
     private update(): void {
-        var markers = this.editor.findMarkers({name: "line-diff"})
-        markers.forEach( (item) => item.destroy() )
+        this.clearMarkers()
         var editorView = atom.views.getView(this.editor).shadowRoot
         var gutter = $(editorView).find(".gutter")
         var statusChangeSelector = ".git-line-modified, .git-line-removed, .git-line-added"
@@ -36,6 +35,7 @@ class LineDiffWorker {
         )
 
         gutter.on("click", statusChangeSelector, (event) => {
+            this.clearMarkers()
             var line = parseInt($(event.target).text())
             if (isNaN(line)) {
                 return
@@ -43,6 +43,11 @@ class LineDiffWorker {
             var details = this.calculateDiffDetails(line)
             this.decorateDiffMarkers(details)
 		})
+    }
+
+    private clearMarkers(): void {
+        var markers = this.editor.findMarkers({name: "line-diff"})
+        markers.forEach( (item) => item.destroy() )
     }
 
     private decorateDiffMarkers(details): void {
@@ -73,11 +78,20 @@ class LineDiffWorker {
     }
 
     findFileDiffs() {
-        var repo = atom.project.getRepo()
-        var activePath = atom.workspace.getActiveEditor().getPath()
-        var fileRepo = repo.getRepo(activePath)
-        var activeEditorText = atom.workspace.getActiveEditor().getBuffer().getText()
-        return fileRepo.getLineDiffDetails(repo.relativize(activePath), activeEditorText)
+        var activePath = this.editor.getPath()
+        var repo = null
+        atom.project.getRepositories().forEach(r => {
+            if (activePath.indexOf(r.repo.workingDirectory) != -1) {
+                repo = r
+            }
+        })
+        if (repo) {
+            var fileRepo = repo.getRepo(activePath)
+            var activeEditorText = this.editor.getBuffer().getText()
+            return fileRepo.getLineDiffDetails(repo.relativize(activePath), activeEditorText)
+        } else {
+            return []
+        }
     }
 
     private findDiffForLine(lineNumber) {
@@ -146,7 +160,7 @@ class MessageBubble extends View {
         this.revert = revert
     }
 
-    private countLeadingSpaces(str): number {
+    private static countLeadingSpaces(str): number {
         var count = 0
         var chars = str.split("")
         for (var i = 0; i < chars.length; i++) {
@@ -159,7 +173,7 @@ class MessageBubble extends View {
         return count
     }
 
-    private buildStringOfSpaces(len): string {
+    private static buildStringOfSpaces(len): string {
         var str = ""
         for (var i = 0; i < len; i++) {
             str += "_"
@@ -191,7 +205,9 @@ class MessageBubble extends View {
                 var lines = message.split("\n")
                 for (var i = 0; i < lines.length; i++) {
                     this.li(() => {
-                        this.span({class: "empty-space"}, "foo bar")
+                        var leadingSpaces = MessageBubble.countLeadingSpaces(lines[i])
+                        var indent = MessageBubble.buildStringOfSpaces(leadingSpaces)
+                        this.span({class: "empty-space"}, indent)
                         this.span(lines[i])
                     })
                 }
