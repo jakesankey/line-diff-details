@@ -63,7 +63,10 @@ class LineDiffWorker
 
     findFileDiffs: ->
         activePath = @editor.getPath()
-        repo = r for r in atom.project.getRepositories() when activePath.indexOf(r?.repo.workingDirectory) != -1
+        if process.platform is 'win32'
+            repo = r for r in atom.project.getRepositories() when activePath.indexOf(r?.repo.workingDirectory.replace(/\//g, "\\")) != -1
+        else
+            repo = r for r in atom.project.getRepositories() when activePath.indexOf(r?.repo.workingDirectory) != -1
         return [] if not repo?
         fileRepo = repo.getRepo(activePath)
         activeEditorText = @editor.getBuffer().getText()
