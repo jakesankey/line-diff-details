@@ -70,7 +70,8 @@ class LineDiffWorker
         return [] if not repo?
         fileRepo = repo.getRepo(activePath)
         activeEditorText = @editor.getBuffer().getText()
-        return fileRepo.getLineDiffDetails(repo.relativize(activePath), activeEditorText)
+        relativePath = activePath.substring(fileRepo.workingDirectory.length + 1)
+        return fileRepo.getLineDiffDetails(relativePath, activeEditorText)
 
     findDiffForLine: (lineNumber) ->
         fileDiffs = @findFileDiffs()
