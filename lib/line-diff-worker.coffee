@@ -71,6 +71,8 @@ class LineDiffWorker
         fileRepo = repo.getRepo(activePath)
         activeEditorText = @editor.getBuffer().getText()
         relativePath = activePath.substring(fileRepo.workingDirectory.length + 1)
+        if process.platform is 'win32'
+            relativePath = relativePath.replace('\\', '/')
         return fileRepo.getLineDiffDetails(relativePath, activeEditorText)
 
     findDiffForLine: (lineNumber) ->
