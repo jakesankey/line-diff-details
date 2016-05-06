@@ -154,16 +154,15 @@ class MessageBubble extends View
     @content: (message) ->
         isRemoval = message.length is 0
         message = "(Remove new lines)" if isRemoval
-        @div class: "select-list popover-list linter-list", =>
-            @ul class: "list-group", =>
-                for part in message.split("\n")
-                    @li =>
-                        @span class: "empty-space", buildStringOfSpaces(countLeadingSpaces(part))
-                        @span part
-            @div class: "action-buttons", =>
-                @button click: "removeView", class: "btn btn-success diff-button", "Close"
-                if not isRemoval
-                    @button click: "copyToClipboard", class: "btn btn-primary diff-button", "Copy"
-                @button click: "revertAndClose", class: "btn btn-warning diff-button", "Revert"
-
+        @div style: "opacitiy: 0", =>
+            @div class: "bubble", =>
+                @div class: "action-buttons", =>
+                    @button click: "removeView", class: "btn diff-button", title: "Close", =>
+                        @span class: "text-success icon icon-x"
+                    @button click: "revertAndClose", class: "btn diff-button", title: "Revert", =>
+                        @span class: "text-warning icon icon-history"
+                    unless isRemoval
+                        @button click: "copyToClipboard", class: "btn diff-button", title: "Copy", => 
+                            @span class: "text-primary icon icon-clippy"
+                @div class: "bubble-code", => @span message
 module.exports = LineDiffWorker

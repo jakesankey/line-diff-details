@@ -1,31 +1,29 @@
 @import 'ui-variables';
 @import 'syntax-variables';
 
-.select-list.linter-list.popover-list {
+.bubble {
   box-shadow: 0px 0px 20px 0px @syntax-text-color;
-  left: 0;
-  margin-left: 3px;
+  left: 3px;
   background: rgba(33, 38, 38, 0.92);
   font-family: @font-family;
   font-size: @font-size;
   width: auto;
-
-  .list-group li:not(.list-nested-item) {
-    padding-left: 0;
+  padding: 10px;
+  border-radius: 3px;
+  
+  .bubble-code {
     line-height: 18px;
     color: #f6f6f6;
+    white-space: pre-wrap;
+    padding: 5px;
+    margin-top: 5px;
   }
-
-  .empty-space {
-    opacity: 0
-  }
-
+  
   .diff-button {
-    margin-left: 5px
-  }
-
-  .action-buttons {
-    padding-top: 15px;
-    text-align: right
+    margin-right: 5px;
+    text-align: center;
+    .icon::before {
+      margin: 0;
+    }
   }
 }
