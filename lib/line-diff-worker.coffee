@@ -125,21 +125,6 @@ class MessageBubble extends View
     constructor: (@message, @revert) ->
         super(@message)
 
-    countLeadingSpaces = (str) ->
-        count = 0
-        for s in str.split("")
-            if s is " "
-                count++
-            else
-                break
-        return count
-
-    buildStringOfSpaces = (len) ->
-        str = ""
-        for i in [0...len]
-            str += "_"
-        return str
-
     removeView: ->
         @remove()
 
