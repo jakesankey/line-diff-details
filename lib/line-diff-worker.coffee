@@ -65,6 +65,7 @@ class LineDiffWorker
         activePath = @editor.getPath()
         if process.platform is 'win32'
             repo = r for r in atom.project.getRepositories() when activePath.indexOf(r?.repo.workingDirectory.replace(/\//g, "\\")) != -1
+            activePath = activePath.replace(/\\/g, '/')
         else
             repo = r for r in atom.project.getRepositories() when activePath.indexOf(r?.repo.workingDirectory) != -1
         return [] if not repo?
