@@ -2,7 +2,7 @@
 
 class LineDiffWorker
     registerEditor: (@editor) ->
-        @editor.onDidChangeScrollTop @update
+        @editor.editorElement.onDidChangeScrollTop @update
         @editor.onDidStopChanging @update
 
     update: =>
