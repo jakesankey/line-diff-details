@@ -30,7 +30,6 @@ class LineDiffWorker
             line = parseInt $(event.target).text()
             return if isNaN(line)
             details = @calculateDiffDetails(line)
-            console.log line
             @decorateDiffMarkers(details)
 
     clearMarkers: ->
@@ -83,7 +82,6 @@ class LineDiffWorker
 
     calculateDiffDetails: (lineNumber) ->
         fileDiffs = @findFileDiffs()
-        console.log fileDiffs
         lineStuff = {}
         index = 0
         newDiff = @findDiffForLine(lineNumber)
