@@ -1,7 +1,7 @@
 {
   "name": "line-diff-details",
   "main": "./lib/line-diff-details",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Review/revert individual line changes.",
   "keywords": [
     "diff",
