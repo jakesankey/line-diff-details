@@ -46,13 +46,12 @@ class LineDiffWorker
         messageBubble = null
         marker = @editor.markBufferRange([startPoint, startPoint], {name: "line-diff"})
         if details.isRemoving
-            messageBubble = new MessageBubble(details.originalContent, ->
+            messageBubble = new MessageBubble(details.originalContent, =>
                 buffer.insert([details.newStart, 0], details.originalContent)
             )
         else if details.isAdding
-            messageBubble = new MessageBubble(details.originalContent, ->
-                for i in [0...details.newLines]
-                    buffer.deleteRow(details.newStart - 1)
+            messageBubble = new MessageBubble(details.originalContent, =>
+                buffer.deleteRows(details.newStart - 1, newEndBufferRow)
             )
         else
             messageBubble = new MessageBubble(details.originalContent, =>
