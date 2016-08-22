@@ -140,11 +140,11 @@ class MessageBubble extends View
         @div class: "bubble", =>
             @div class: "action-buttons", =>
                 @button click: "removeView", class: "btn diff-button", title: "Close", =>
-                    @span class: "text-success icon icon-x"
+                    @span class: "text-error icon icon-x"
                 @button click: "revertAndClose", class: "btn diff-button", title: "Revert", =>
                     @span class: "text-warning icon icon-history"
                 unless isRemoval
                     @button click: "copyToClipboard", class: "btn diff-button", title: "Copy", =>
-                        @span class: "text-primary icon icon-clippy"
+                        @span class: "text-success icon icon-clippy"
             @div class: "bubble-code", => @span message
 module.exports = LineDiffWorker
