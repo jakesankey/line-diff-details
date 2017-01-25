@@ -7,8 +7,6 @@ class LineDiffWorker
 
     update: =>
         @clearMarkers()
-        markers = @editor.findMarkers({name: "line-diff"})
-        marker.destroy() for marker in markers
         editorView = atom.views.getView(@editor)
         gutter = $(editorView).find ".gutter"
         statusChangeSelector = ".git-line-modified, .git-line-removed, .git-line-added"
