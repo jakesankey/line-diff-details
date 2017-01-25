@@ -1,3 +1,4 @@
+var $ = require("atom-space-pen-views").$
 var LineDiffWorker = require("./line-diff-worker")
 
 class LineDiffDetails {
