@@ -13,7 +13,7 @@ class LineDiffDetails {
         editors.forEach((editor) => {
             var markers = editor.findMarkers({name: "line-diff"})
             markers.forEach((marker) => marker.destroy())
-            var editorView = atom.views.getView(editor).shadowRoot
+            var editorView = atom.views.getView(editor)
             var gutter = $(editorView).find(".gutter")
             gutter.off("click mouseenter mouseleave")
         })
