@@ -1,6 +1,8 @@
 {$, View} = require "atom-space-pen-views"
 
 class LineDiffWorker
+    markers: {}
+    
     registerEditor: (@editor) ->
         @editor.editorElement.onDidChangeScrollTop @update
         @editor.onDidStopChanging @update
@@ -31,8 +33,9 @@ class LineDiffWorker
             @decorateDiffMarkers(details)
 
     clearMarkers: ->
-        markers = @editor.findMarkers({name: "line-diff"})
-        marker.destroy() for marker in markers
+        for id, marker of @markers
+            marker.destroy()
+            delete @markers[id]
 
     decorateDiffMarkers: (details) ->
         startPoint = [details.newStart - 1, 0]
@@ -42,7 +45,7 @@ class LineDiffWorker
         endPoint = [newEndBufferRow, newEndBufferRowLength]
         marker = null
         messageBubble = null
-        marker = @editor.markBufferRange([startPoint, startPoint], {name: "line-diff"})
+        marker = @editor.markBufferRange([startPoint, startPoint])
         if details.isRemoving
             messageBubble = new MessageBubble(details.originalContent, =>
                 buffer.insert([details.newStart, 0], details.originalContent)
@@ -56,6 +59,7 @@ class LineDiffWorker
                 @editor.setTextInBufferRange([startPoint, endPoint], details.originalContent.slice(0, -1))
             )
         @editor.decorateMarker(marker, {type: "overlay", item: messageBubble, position: "tail"})
+        @markers[marker.id] = marker
 
     findFileDiffs: ->
         activePath = @editor.getPath()
