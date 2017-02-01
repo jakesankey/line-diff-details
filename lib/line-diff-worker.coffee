@@ -4,6 +4,7 @@ class LineDiffWorker
     registerEditor: (@editor) ->
         @editor.onDidChangeScrollTop @update
         @editor.onDidStopChanging @update
+        @editor.onDidChangeCursorPosition @clearMarkers
 
     update: =>
         @clearMarkers()
@@ -32,7 +33,7 @@ class LineDiffWorker
             details = @calculateDiffDetails(line)
             @decorateDiffMarkers(details)
 
-    clearMarkers: ->
+    clearMarkers: =>
         markers = @editor.findMarkers({name: "line-diff"})
         marker.destroy() for marker in markers
 
