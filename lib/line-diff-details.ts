@@ -1,5 +1,6 @@
-var $ = require("atom-space-pen-views").$
-var LineDiffWorker = require("./line-diff-worker")
+import $ = require("atom-space-pen-views").$
+
+import LineDiffWorker = require("./line-diff-worker")
 
 class LineDiffDetails {
     lineDiffWorkers: LineDiffWorker[] = []
