@@ -1,4 +1,6 @@
-var LineDiffWorker = require("./line-diff-worker")
+import $ = require("jquery")
+
+import LineDiffWorker = require("./line-diff-worker")
 
 class LineDiffDetails {
     activate(): void {
