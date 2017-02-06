@@ -1,4 +1,4 @@
-import $ = require("atom-space-pen-views").$
+import $ = require("jquery")
 
 import LineDiffWorker = require("./line-diff-worker")
 
