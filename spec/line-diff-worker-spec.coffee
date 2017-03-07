@@ -99,15 +99,18 @@ describe "LineDiffWorker Suite", ->
         scrollTopEvent = no
         stopChangingEvent = no
         pathChangeEvent = no
+        changeCursorPositionEvent = no
         editor = {
             onDidChangeScrollTop: -> scrollTopEvent = yes
             onDidStopChanging: -> stopChangingEvent = yes
+            onDidChangeCursorPosition: -> changeCursorPositionEvent = yes
         }
 
         service.registerEditor(editor)
 
         expect(scrollTopEvent).toBe yes
         expect(stopChangingEvent).toBe yes
+        expect(changeCursorPositionEvent).toBe yes
 
     it "should decorate the marker", ->
         decorated = no
