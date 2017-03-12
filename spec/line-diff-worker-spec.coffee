@@ -101,7 +101,9 @@ describe "LineDiffWorker Suite", ->
         pathChangeEvent = no
         changeCursorPositionEvent = no
         editor = {
-            onDidChangeScrollTop: -> scrollTopEvent = yes
+            editorElement: {
+                onDidChangeScrollTop: -> scrollTopEvent = yes
+            }
             onDidStopChanging: -> stopChangingEvent = yes
             onDidChangeCursorPosition: -> changeCursorPositionEvent = yes
         }
@@ -119,7 +121,7 @@ describe "LineDiffWorker Suite", ->
                 return {
                     lineForRow: -> ""
                 }
-            markBufferRange: ->
+            markBufferRange: -> { id : 1 }
             decorateMarker: -> decorated = yes
         }
         details = {
