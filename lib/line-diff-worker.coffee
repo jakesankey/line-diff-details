@@ -6,6 +6,7 @@ class LineDiffWorker
     registerEditor: (@editor) ->
         @editor.editorElement.onDidChangeScrollTop @update
         @editor.onDidStopChanging @update
+        @editor.onDidChangeCursorPosition @clearMarkers
 
     update: =>
         @clearMarkers()
@@ -47,11 +48,11 @@ class LineDiffWorker
         messageBubble = null
         marker = @editor.markBufferRange([startPoint, startPoint])
         if details.isRemoving
-            messageBubble = new MessageBubble(details.originalContent, =>
+            messageBubble = new MessageBubble(details.originalContent, ->
                 buffer.insert([details.newStart, 0], details.originalContent)
             )
         else if details.isAdding
-            messageBubble = new MessageBubble(details.originalContent, =>
+            messageBubble = new MessageBubble(details.originalContent, ->
                 buffer.deleteRows(details.newStart - 1, newEndBufferRow)
             )
         else

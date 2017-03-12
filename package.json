@@ -1,7 +1,7 @@
 {
   "name": "line-diff-details",
   "main": "./lib/line-diff-details",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Review/revert individual line changes.",
   "keywords": [
     "diff",
@@ -20,5 +20,8 @@
   },
   "dependencies": {
     "atom-space-pen-views": "^2.0.3"
+  },
+  "devDependencies": {
+    "coffeelint": "1.16.0"
   }
 }
