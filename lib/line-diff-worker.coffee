@@ -2,8 +2,10 @@
 
 class LineDiffWorker
     markers: {}
-    
+
     registerEditor: (@editor) ->
+        if not @editor?.editorElement
+          return
         @editor.editorElement.onDidChangeScrollTop @update
         @editor.onDidStopChanging @update
         @editor.onDidChangeCursorPosition @clearMarkers
@@ -31,7 +33,10 @@ class LineDiffWorker
             line = parseInt $(event.target).text()
             return if isNaN(line)
             details = @calculateDiffDetails(line)
-            @decorateDiffMarkers(details)
+            if not details
+                @editor.unfoldAll()
+            else
+                @decorateDiffMarkers(details)
 
     clearMarkers: ->
         for id, marker of @markers
@@ -41,6 +46,8 @@ class LineDiffWorker
     decorateDiffMarkers: (details) ->
         startPoint = [details.newStart - 1, 0]
         newEndBufferRow = details.newStart - 1 + details.newLines - 1
+        if newEndBufferRow < 0
+          newEndBufferRow = 0
         buffer = @editor.getBuffer()
         newEndBufferRowLength = buffer.lineForRow(newEndBufferRow).length
         endPoint = [newEndBufferRow, newEndBufferRowLength]
@@ -119,8 +126,7 @@ class LineDiffWorker
                 }
 
             index++
-
-        return {}
+            
 
 class MessageBubble extends View
     constructor: (@message, @revert) ->
