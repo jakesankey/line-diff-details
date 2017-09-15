@@ -100,19 +100,25 @@ describe "LineDiffWorker Suite", ->
         stopChangingEvent = no
         pathChangeEvent = no
         changeCursorPositionEvent = no
-        editor = {
-            editorElement: {
-                onDidChangeScrollTop: -> scrollTopEvent = yes
-            }
-            onDidStopChanging: -> stopChangingEvent = yes
-            onDidChangeCursorPosition: -> changeCursorPositionEvent = yes
-        }
+        editor = null
+        editorView = null
 
-        service.registerEditor(editor)
+        waitsForPromise ->
+            atom.workspace.open().then (e) ->
+                editor = e
+                editorView = atom.views.getView(e)
 
-        expect(scrollTopEvent).toBe yes
-        expect(stopChangingEvent).toBe yes
-        expect(changeCursorPositionEvent).toBe yes
+        runs ->
+
+            spyOn(editorView, "onDidChangeScrollTop").andCallFake -> scrollTopEvent = yes
+            spyOn(editor, "onDidStopChanging").andCallFake -> stopChangingEvent = yes
+            spyOn(editor, "onDidChangeCursorPosition").andCallFake -> changeCursorPositionEvent = yes
+
+            service.registerEditor(editor)
+
+            expect(scrollTopEvent).toBe yes
+            expect(stopChangingEvent).toBe yes
+            expect(changeCursorPositionEvent).toBe yes
 
     it "should decorate the marker", ->
         decorated = no
