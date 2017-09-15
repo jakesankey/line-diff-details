@@ -127,6 +127,8 @@ describe "LineDiffWorker Suite", ->
             expect(service.update.calls.length).toBe 2
 
         it "should subscribe to cursor move event for clearMarkers", ->
+            expect(service.clearMarkers.calls.length).toBe 0
+
             editor.cursorMoved()
 
             expect(service.clearMarkers.calls.length).toBe 1
