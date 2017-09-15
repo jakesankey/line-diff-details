@@ -95,30 +95,41 @@ describe "LineDiffWorker Suite", ->
         expect(result.newEnd).toEqual 13
         expect(result.originalContent).toEqual ""
 
-    it "should subscribe to events for updating", ->
-        scrollTopEvent = no
-        stopChangingEvent = no
-        pathChangeEvent = no
-        changeCursorPositionEvent = no
+    describe "subscribing to events", ->
         editor = null
         editorView = null
 
-        waitsForPromise ->
-            atom.workspace.open().then (e) ->
-                editor = e
-                editorView = atom.views.getView(e)
+        beforeEach ->
+            spyOn(service, "update")
+            spyOn(service, "clearMarkers")
 
-        runs ->
+            waitsForPromise ->
+                atom.workspace.open().then (e) ->
+                    editor = e
+                    editorView = atom.views.getView(e)
 
-            spyOn(editorView, "onDidChangeScrollTop").andCallFake -> scrollTopEvent = yes
-            spyOn(editor, "onDidStopChanging").andCallFake -> stopChangingEvent = yes
-            spyOn(editor, "onDidChangeCursorPosition").andCallFake -> changeCursorPositionEvent = yes
+            runs ->
+                service.registerEditor(editor)
 
-            service.registerEditor(editor)
+        it "should subscribe to scroll event for update", ->
+            expect(service.update.calls.length).toBe 1
 
-            expect(scrollTopEvent).toBe yes
-            expect(stopChangingEvent).toBe yes
-            expect(changeCursorPositionEvent).toBe yes
+            spyOn(editor.component, "getMaxScrollTop").andReturn 1
+            editor.component.setScrollTop 1
+
+            expect(service.update.calls.length).toBe 2
+
+        it "should subscribe to stop changing event for update", ->
+            expect(service.update.calls.length).toBe 1
+
+            editor.buffer.emitDidStopChangingEvent()
+
+            expect(service.update.calls.length).toBe 2
+
+        it "should subscribe to cursor move event for clearMarkers", ->
+            editor.cursorMoved()
+
+            expect(service.clearMarkers.calls.length).toBe 1
 
     it "should decorate the marker", ->
         decorated = no
