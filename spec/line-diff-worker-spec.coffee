@@ -95,24 +95,43 @@ describe "LineDiffWorker Suite", ->
         expect(result.newEnd).toEqual 13
         expect(result.originalContent).toEqual ""
 
-    it "should subscribe to events for updating", ->
-        scrollTopEvent = no
-        stopChangingEvent = no
-        pathChangeEvent = no
-        changeCursorPositionEvent = no
-        editor = {
-            editorElement: {
-                onDidChangeScrollTop: -> scrollTopEvent = yes
-            }
-            onDidStopChanging: -> stopChangingEvent = yes
-            onDidChangeCursorPosition: -> changeCursorPositionEvent = yes
-        }
+    describe "subscribing to events", ->
+        editor = null
+        editorView = null
 
-        service.registerEditor(editor)
+        beforeEach ->
+            spyOn(service, "update")
+            spyOn(service, "clearMarkers")
 
-        expect(scrollTopEvent).toBe yes
-        expect(stopChangingEvent).toBe yes
-        expect(changeCursorPositionEvent).toBe yes
+            waitsForPromise ->
+                atom.workspace.open().then (e) ->
+                    editor = e
+                    editorView = atom.views.getView(e)
+
+            runs ->
+                service.registerEditor(editor)
+
+        it "should subscribe to scroll event for update", ->
+            expect(service.update.calls.length).toBe 1
+
+            spyOn(editor.component, "getMaxScrollTop").andReturn 1
+            editor.component.setScrollTop 1
+
+            expect(service.update.calls.length).toBe 2
+
+        it "should subscribe to stop changing event for update", ->
+            expect(service.update.calls.length).toBe 1
+
+            editor.buffer.emitDidStopChangingEvent()
+
+            expect(service.update.calls.length).toBe 2
+
+        it "should subscribe to cursor move event for clearMarkers", ->
+            expect(service.clearMarkers.calls.length).toBe 0
+
+            editor.cursorMoved()
+
+            expect(service.clearMarkers.calls.length).toBe 1
 
     it "should decorate the marker", ->
         decorated = no
