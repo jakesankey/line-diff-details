@@ -4,20 +4,20 @@ class LineDiffWorker
     markers: {}
 
     registerEditor: (@editor) ->
-        if not @editor?.editorElement
-          return
-        @editor.editorElement.onDidChangeScrollTop @update
+        editorView = atom.views.getView(@editor)
+        editorView.onDidChangeScrollTop @update
+        @gutter = $(editorView).find ".gutter"
         @editor.onDidStopChanging @update
         @editor.onDidChangeCursorPosition @clearMarkers
+        @update()
 
     update: =>
         @clearMarkers()
-        editorView = atom.views.getView(@editor)
-        gutter = $(editorView).find ".gutter"
+        
         statusChangeSelector = ".git-line-modified, .git-line-removed, .git-line-added"
-        gutter.off("click mouseenter mouseleave")
+        @gutter.off("click mouseenter mouseleave")
 
-        gutter.on "mouseenter", statusChangeSelector, ->
+        @gutter.on "mouseenter", statusChangeSelector, ->
             if $(this).hasClass("git-line-modified")
                 $(this).addClass("line-diff-modified")
             if $(this).hasClass("git-line-added")
@@ -25,10 +25,10 @@ class LineDiffWorker
             if $(this).hasClass("git-line-removed")
                 $(this).addClass("line-diff-removed")
 
-        gutter.on "mouseleave", statusChangeSelector, ->
+        @gutter.on "mouseleave", statusChangeSelector, ->
             $(this).removeClass("line-diff-modified line-diff-added line-diff-removed")
 
-        gutter.on "click", statusChangeSelector, (event) =>
+        @gutter.on "click", statusChangeSelector, (event) =>
             @clearMarkers()
             line = parseInt $(event.target).text()
             return if isNaN(line)
@@ -47,7 +47,7 @@ class LineDiffWorker
         startPoint = [details.newStart - 1, 0]
         newEndBufferRow = details.newStart - 1 + details.newLines - 1
         if newEndBufferRow < 0
-          newEndBufferRow = 0
+            newEndBufferRow = 0
         buffer = @editor.getBuffer()
         newEndBufferRowLength = buffer.lineForRow(newEndBufferRow).length
         endPoint = [newEndBufferRow, newEndBufferRowLength]
