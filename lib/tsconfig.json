@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "baseUrl": "../../",
+    "removeComments": true,
+    "types": [ "atom", "node" ]
+  }
+}
