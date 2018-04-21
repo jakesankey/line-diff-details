@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@types/node": "^9.4.7",
-    "atom-ts-transpiler": "^1.4.3",
+    "atom-ts-transpiler": "^1.5.2",
     "atom-space-pen-views": "^2.0.3",
     "typescript": "^2.7.2"
   },
@@ -32,9 +32,7 @@
       "transpiler": "atom-ts-transpiler",
       "glob": "{!(node_modules)/**/,}*.ts?(x)",
       "options": {
-        "cacheKeyFiles": [
-          "lib/tsconfig.json"
-        ],
+        "cacheKeyFiles": [],
         "verbose": false
       }
     }
